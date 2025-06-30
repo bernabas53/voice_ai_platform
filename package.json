@@ -1,0 +1,16 @@
+{
+  "name": "voice_ai_platform",
+  "version": "1.0.0",
+  "description": "Voice Ai Agent Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd CYOAI && yarn install",
+    "dev": "cd CYOAI && yarn dev",
+    "build": "cd CYOAI && yarn build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

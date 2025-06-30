@@ -1,0 +1,75 @@
+{
+  "name": "cyoai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Voice AI Platform - Custom AI Interface for Frappe",
+  "keywords": [
+    "voice-ai",
+    "frappe",
+    "react",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/assets/voice_ai_platform/CYOAI/ && yarn copy-html-entry",
+    "build:analyze": "vite build --base=/assets/voice_ai_platform/CYOAI/ --mode analyze",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "copy-html-entry": "cp ../voice_ai_platform/public/CYOAI/index.html ../voice_ai_platform/www/CYOAI.html",
+    "prebuild": "yarn type-check && yarn lint",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.0",
+    "frappe-react-sdk": "^1.11.0",
+    "react": "^19.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2",
+    "recharts": "^3.0.2",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.0.4",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.5.2",
+    "@vitest/ui": "^2.1.8",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.29.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.2.0",
+    "husky": "^9.0.11",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.5.6",
+    "sass": "^1.89.2",
+    "tailwindcss": "^4.1.11",
+    "terser": "^5.43.1",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.34.1",
+    "vite": "^7.0.0",
+    "vitest": "^2.1.8"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
