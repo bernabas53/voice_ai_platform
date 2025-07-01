@@ -13,6 +13,16 @@ export default defineConfig(({ mode }) => ({
 				changeOrigin: true,
 				ws: true,
 			},
+			'/api': {
+				target: 'http://erpnextcyoai.ddns.net:8080',
+				changeOrigin: true,
+				secure: false,
+			},
+			'/assets': {
+				target: 'http://erpnextcyoai.ddns.net:8080',
+				changeOrigin: true,
+				secure: false,
+			},
 		},
 	},
 	resolve: {

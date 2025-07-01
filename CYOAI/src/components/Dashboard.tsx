@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { frappeApi } from "../lib/frappeApi";
 import { getSocket } from "../lib/socket";
 import LiveChart from "./LiveChart";
+import LoadingSpinner from "./LoadingSpinner";
 import { useTheme } from "../ThemeContext";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, CartesianGrid, Legend } from 'recharts';
 
@@ -41,7 +42,7 @@ export default function Dashboard() {
   });
   const [filteredLogs, setFilteredLogs] = useState<CallLog[]>([]);
   const [filterLoading, setFilterLoading] = useState(false);
-  const searchTimeout = useRef<NodeJS.Timeout | null>(null);
+  const searchTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [callLogs, setCallLogs] = useState<CallLog[]>([]);
   const pieColors = ['#3b82f6', '#06b6d4', '#f59e42', '#a78bfa', '#f87171', '#10b981'];
 
@@ -413,14 +414,8 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6 mb-8">
             {/* Weekly Calls Bar Chart */}
             {isLoading ? (
-              <div className="col-span-12 xl:col-span-7 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col animate-pulse">
-                <div className="h-5 w-1/4 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-                <div className="h-32 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
-                <div className="flex justify-between mt-2">
-                  {Array.from({ length: 7 }).map((_, i) => (
-                    <div key={i} className="h-3 w-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                  ))}
-                </div>
+              <div className="col-span-12 xl:col-span-7 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col">
+                <LoadingSpinner size="md" text="Loading weekly data..." />
               </div>
             ) : (
               <div className="col-span-12 xl:col-span-7 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col">
@@ -438,15 +433,8 @@ export default function Dashboard() {
             )}
             {/* Monthly Target Card with Circular Progress */}
             {isLoading ? (
-              <div className="col-span-12 xl:col-span-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col items-center justify-center animate-pulse">
-                <div className="h-5 w-1/3 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-                <div className="h-32 w-32 bg-gray-100 dark:bg-gray-700 rounded-full mb-4"></div>
-                <div className="h-4 w-2/3 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-                <div className="flex justify-between w-full mt-4">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="h-3 w-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                  ))}
-                </div>
+              <div className="col-span-12 xl:col-span-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col items-center justify-center">
+                <LoadingSpinner size="md" text="Loading target data..." />
               </div>
             ) : (
               <div className="col-span-12 xl:col-span-5 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col items-center justify-center">
@@ -456,7 +444,7 @@ export default function Dashboard() {
                   <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" strokeWidth="12" strokeDasharray="339.292" strokeDashoffset="83" strokeLinecap="round" />
                   <text x="50%" y="54%" textAnchor="middle" className="text-2xl font-bold fill-blue-600" dominantBaseline="middle">75.55%</text>
                 </svg>
-                <div className="text-center text-gray-500 dark:text-gray-300 text-sm">You earn $3287 today, it's higher than last month. Keep up your good work!</div>
+                <div className="text-center text-gray-500 dark:text-gray-300 text-sm">You earn $3287 today, it&apos;s higher than last month. Keep up your good work!</div>
                 <div className="flex justify-between w-full mt-4 text-xs text-gray-400 dark:text-gray-300">
                   <div>
                     <div className="font-bold text-gray-700 dark:text-gray-200">Target</div>
@@ -475,14 +463,8 @@ export default function Dashboard() {
             )}
             {/* Statistics Area Chart */}
             {isLoading ? (
-              <div className="col-span-12 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col mt-2 animate-pulse">
-                <div className="h-5 w-1/4 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-                <div className="h-32 w-full bg-gray-100 dark:bg-gray-700 rounded"></div>
-                <div className="flex gap-2 mt-4">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                  ))}
-                </div>
+              <div className="col-span-12 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col mt-2">
+                <LoadingSpinner size="md" text="Loading statistics..." />
               </div>
             ) : (
               <div className="col-span-12 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-4 sm:p-6 flex flex-col mt-2">
