@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => ({
 		}
 	},
 	build: {
-		outDir: '../voice_ai_platform/public/CYOAI',
+		outDir: 'dist',
 		emptyOutDir: true,
 		target: 'es2015',
 		minify: 'terser',

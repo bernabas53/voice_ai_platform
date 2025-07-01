@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/voice_ai_platform/CYOAI/ && yarn copy-html-entry",
+    "build": "vite build",
     "build:analyze": "vite build --base=/assets/voice_ai_platform/CYOAI/ --mode analyze",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
